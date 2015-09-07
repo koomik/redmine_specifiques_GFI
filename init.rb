@@ -2,7 +2,9 @@ require 'redmine'
 require 'gct_tpscra_patch_application_helper'
 require 'gct_tpscra_patch_timelog_helper'
 require 'gct_tpscra_patch_issue_helper'
+
 require 'gct_tpscra_patch_timelog_controller'
+
 require 'gct_tpscra_patch_issue_model'
 require 'gct_tpscra_patch_time_entry_model'
 

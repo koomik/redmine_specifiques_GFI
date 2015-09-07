@@ -19,7 +19,6 @@ module GCT_TPS_CRA_patch_application_helper
 		else
 			textout = "(inconnu)"
 	end
-	puts "Valeur retournée #{textout}"
 	return textout
   end
     

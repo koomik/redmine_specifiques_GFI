@@ -22,7 +22,7 @@ module GCT_TPS_CRA_patch_time_entry_model
 		# On vérifie que la valeur du Temps CRA saisie est bien incluse dans la liste de valeurs admissibles
 		validates_inclusion_of :gct_tpscra, :in=>@@valid_units, :message=> :inclusion
 		
-		safe_attributes 'hours', 'comments', 'project_id', 'issue_id', 'activity_id', 'spent_on', 'custom_field_values', 'custom_fields', 'gct_tpscra'
+		safe_attributes 'gct_tpscra'
 
     end
   end

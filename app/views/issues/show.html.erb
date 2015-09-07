@@ -67,7 +67,7 @@
   unless @issue.disabled_core_fields.include?('estimated_hours')
     unless @issue.total_estimated_hours.nil?
 		rows.right l(:field_estimated_hours), l_hours(@issue.estimated_hours) + " (" + l_days(@issue.estimated_hours) + ")", :class => 'estimated-hours'
-		rows.right l(:field_gct_tpscra), l_hours(@issue.gct_tpscra_hours) + " (" + l_days(@issue.gct_tpscra_hours)  + ")", :class => 'estimated-hours'
+		rows.right l(:field_gct_tpscra), l_hours(@issue.gct_tpscra_hours) + " (" + l_days(@issue.gct_tpscra_hours)  + ")", :class => 'gct_tpscra'
 	end
   end
   
