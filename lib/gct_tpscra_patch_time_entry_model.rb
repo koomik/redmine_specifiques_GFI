@@ -33,9 +33,15 @@ module GCT_TPS_CRA_patch_time_entry_model
   
   module InstanceMethods
 	def validate_time_entry_with_patch
+		# Méthode originale (copié collé)
 		errors.add :hours, :invalid if hours && (hours < 0 || hours >= 1000)
 		errors.add :project_id, :invalid if project.nil?
-		errors.add :issue_id, :invalid if (issue_id && !issue) || (issue && project!=issue.project)
+		errors.add :issue_id, :invalid if (issue_id && !issue) || (issue && project!=issue.project) || @invalid_issue_id
+		errors.add :activity_id, :inclusion if activity_id_changed? && project && !project.activities.include?(activity)
+
+		# Controle sur la saisie dans le champ commentaire
+		@@invalid_chars = "&*%?'#\""
+		errors.add(:comments, :invalid_char, :value =>@@invalid_chars) if (comments =~ /[#{@@invalid_chars}]/)
 
 		if (id.nil?)
 			conditions = [ "spent_on = ? and user_id = ?", spent_on, user_id ]
