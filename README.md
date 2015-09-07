@@ -10,8 +10,6 @@ Les caractères &*%?'#\" sont désormais filtrés. Leur saisie entraine un messa
 
 
 ## Procédure de réintégration
--Copier le dossier redmine_patch_gct_tpscra dans le répertoire {REDMINE_ROOT}/apps/redmine/htdocs/plugins
-
--`bundle exec rake redmine:plugins:migrate RAILS_ENV=production`
-
--Relancer le serveur HTTP
+- Copier le dossier redmine_patch_gct_tpscra dans le répertoire {REDMINE_ROOT}/apps/redmine/htdocs/plugins
+- `bundle exec rake redmine:plugins:migrate RAILS_ENV=production`
+- Relancer le serveur HTTP
