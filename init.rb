@@ -1,4 +1,5 @@
 require 'redmine'
+
 require 'gct_tpscra_patch_application_helper'
 require 'gct_tpscra_patch_timelog_helper'
 require 'gct_tpscra_patch_issue_helper'
