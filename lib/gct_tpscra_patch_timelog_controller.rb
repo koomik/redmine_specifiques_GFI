@@ -7,6 +7,8 @@ module GCT_TPS_CRA_patch_timelog
     base.class_eval do
       alias_method_chain :new, :patch
 	  alias_method_chain :create, :patch
+	  alias_method_chain :index, :patch
+	  alias_method_chain :report, :patch
     end
   end
   
@@ -60,8 +62,55 @@ module GCT_TPS_CRA_patch_timelog
       end
     end
   end
-	
-	
+  
+  
+	def index_with_patch
+    @query = TimeEntryQuery.build_from_params(params, :project => @project, :name => '_')
+    sort_init(@query.sort_criteria.empty? ? [['spent_on', 'desc']] : @query.sort_criteria)
+    sort_update(@query.sortable_columns)
+    scope = time_entry_scope(:order => sort_clause).
+      includes(:project, :user, :issue).
+      preload(:issue => [:project, :tracker, :status, :assigned_to, :priority])
+		respond_to do |format|
+			format.html {
+			@entry_count = scope.count
+			@entry_pages = Redmine::Pagination::Paginator.new @entry_count, per_page_option, params['page']
+			@entries = scope.offset(@entry_pages.offset).limit(@entry_pages.per_page).to_a
+			@total_hours = scope.sum(:hours).to_f
+
+			render :layout => !request.xhr?
+		}
+		format.api  {
+			@entry_count = scope.count
+			@offset, @limit = api_offset_and_limit
+			@entries = scope.offset(@offset).limit(@limit).preload(:custom_values => :custom_field).to_a
+		}
+		format.atom {
+			entries = scope.limit(Setting.feeds_limit.to_i).reorder("#{TimeEntry.table_name}.created_on DESC").to_a
+			render_feed(entries, :title => l(:label_spent_time))
+		}
+		format.csv {
+			@entries = scope.to_a
+		
+			#Ligne modifiée (spécifique GFI)
+			send_data(query_to_csv(@entries, @query, params), :type => 'text/csv; header=present', :filename => 'timelog_details.csv')
+		}
+		end
+	end
+  
+	def report_with_patch
+		@query = TimeEntryQuery.build_from_params(params, :project => @project, :name => '_')
+		scope = time_entry_scope
+
+		@report = Redmine::Helpers::TimeReport.new(@project, @issue, params[:criteria], params[:columns], scope)
+
+		respond_to do |format|
+			format.html { render :layout => !request.xhr? }
+      
+			#Ligne modifiée (spécifique GFI)
+			format.csv  { send_data(report_to_csv(@criterias, @periods, @hours), :type => 'text/csv; header=present', :filename => 'timelog_report.csv') }
+		end
+	end
 	
   end
 end
