@@ -93,7 +93,7 @@ module GCT_TPS_CRA_patch_timelog
 			@entries = scope.to_a
 		
 			#Ligne modifiée (spécifique GFI)
-			send_data(query_to_csv(@entries, @query, params), :type => 'text/csv; header=present', :filename => 'timelog_details.csv')
+			send_data(query_to_csv_timelog(@entries, @query, params), :type => 'text/csv; header=present', :filename => 'timelog_details.csv')
 		}
 		end
 	end

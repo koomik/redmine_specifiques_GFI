@@ -3,13 +3,14 @@ require 'redmine'
 require 'gct_tpscra_patch_application_helper'
 require 'gct_tpscra_patch_timelog_helper'
 require 'gct_tpscra_patch_issue_helper'
+require 'gct_tpscra_patch_queries_helper'
 
 require 'gct_tpscra_patch_timelog_controller'
 
 require 'gct_tpscra_patch_issue_model'
 require 'gct_tpscra_patch_time_entry_model'
 
-Redmine::Plugin.register :redmine_patch_gct_tpscra do
+Redmine::Plugin.register :redmine_specifiques_GFI do
   name 'Correctif : Mise en place du Temps CRA'
   author 'GCT Orthez'
   description 'Patch spécifique GFI pour prendre en compte les Temps CRA (correspondance avec Resplan)'
