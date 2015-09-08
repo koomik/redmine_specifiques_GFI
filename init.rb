@@ -15,6 +15,7 @@ Redmine::Plugin.register :redmine_specifiques_GFI do
   author 'GCT Orthez'
   description 'Réintégration des spécifiques GFI sous la forme d\'un plugin'
   version '1.0.0'
+  url 'https://github.com/GFI-Orthez/redmine_specifiques_GFI'
   
   requires_redmine :version_or_higher => '3.0.0'
   
