@@ -13,7 +13,8 @@ Les caractères &*%?'#\" sont désormais filtrés. Leur saisie entraine un messa
 - De permettre de modifier la valeur "pourcentage réalisé" d'une demande même si elle possède des sous-demandes
 
 ## Procédure de réintégration
-- `ALTER TABLE 'bitnami_redmine'.'time_entries' ADD COLUMN 'gct_tpscra' VARCHAR(1) NOT NULL  AFTER 'updated_on';`
+- Ajouter le champs Temps CRA dans la base :
+`ALTER TABLE 'bitnami_redmine'.'time_entries' ADD COLUMN 'gct_tpscra' VARCHAR(1) NOT NULL  AFTER 'updated_on';`
 - Copier le dossier redmine_specifiques_GFI dans le répertoire {REDMINE_ROOT}/apps/redmine/htdocs/plugins
 - `bundle exec rake redmine:plugins:migrate RAILS_ENV=production`
 - Relancer le serveur HTTP
