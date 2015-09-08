@@ -11,9 +11,9 @@ require 'gct_tpscra_patch_issue_model'
 require 'gct_tpscra_patch_time_entry_model'
 
 Redmine::Plugin.register :redmine_specifiques_GFI do
-  name 'Correctif : Mise en place du Temps CRA'
+  name 'Correctif : Spécifiques GFI'
   author 'GCT Orthez'
-  description 'Patch spécifique GFI pour prendre en compte les Temps CRA (correspondance avec Resplan)'
+  description 'Réintégration des spécifiques GFI sous la forme d\'un plugin'
   version '1.0.0'
   
   requires_redmine :version_or_higher => '3.0.0'
