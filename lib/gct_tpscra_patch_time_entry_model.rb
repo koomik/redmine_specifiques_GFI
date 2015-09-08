@@ -6,7 +6,7 @@ module GCT_TPS_CRA_patch_time_entry_model
 
 	base.class_eval do
 		unloadable
-		alias_method_chain :validate_time_entry, :patch
+		alias_method_chain :validate_time_entry, :patch # Redéfinition de la méthode validate_time_entry
 
 		attr_protected :project_id, :tyear, :tmonth, :tweek
 		clear_validators! # On supprime toutes les contraintes de validation
@@ -32,6 +32,7 @@ module GCT_TPS_CRA_patch_time_entry_model
   
   
   module InstanceMethods
+	# Redéfinition de la méthode validate_time_entry
 	def validate_time_entry_with_patch
 		# Méthode originale (copié collé)
 		errors.add :hours, :invalid if hours && (hours < 0 || hours >= 1000)
@@ -42,7 +43,11 @@ module GCT_TPS_CRA_patch_time_entry_model
 		# Controle sur la saisie dans le champ commentaire
 		@@invalid_chars = "&*%?'#\""
 		errors.add(:comments, :invalid_char, :value =>@@invalid_chars) if (comments =~ /[#{@@invalid_chars}]/)
-
+		
+		# Tests sur gct_tpscra:
+		# On ne peut saisir au maximum : 
+		# - Qu'un matin et un soir pour une journée donnée
+		# - Ou qu'un jour pour une journée donnée
 		if (id.nil?)
 			conditions = [ "spent_on = ? and user_id = ?", spent_on, user_id ]
 		else

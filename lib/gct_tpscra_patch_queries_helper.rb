@@ -3,15 +3,14 @@ require_dependency 'queries_helper'
 module GCT_TPS_CRA_patch_helper_queries
   def self.included(base)
     base.send(:include, InstanceMethodsHelper)
-	
-	base.class_eval do
-		#alias_method_chain :query_to_csv, :patch
-	end
   end
   
   module InstanceMethodsHelper
+	
+	# La méthode query_to_csv s'applique aux temps passés et aux demandes.
+	# On crée cette nouvelle méthode query_to_csv_timelog qui ne s'appliquera que pour les temps passés.
+	# L'objectif étant d'ajouter le champ gtc_tpscra dans ce fichier csv.
 	def query_to_csv_timelog(items, query, options={})
-    #columns = (options[:columns] == 'all' ? query.available_inline_columns : query.inline_columns)
 	decimal_separator = l(:general_csv_decimal_separator)
 	custom_fields = TimeEntryCustomField.all.to_a
 	columns = [l(:field_spent_on),

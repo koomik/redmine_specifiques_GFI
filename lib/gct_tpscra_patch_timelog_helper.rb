@@ -5,12 +5,14 @@ module GCT_TPS_CRA_patch_helper_timelog
     base.send(:include, InstanceMethodsHelper)
 	
 	base.class_eval do
+		# Redéfinition des méthodes report_to_csv et report_criteria_to_csv
 		alias_method_chain :report_to_csv, :patch
 		alias_method_chain :report_criteria_to_csv, :patch
 	end
   end
   
   module InstanceMethodsHelper
+	# Ajout de la méthode gct_tpscra_collection_for_select_options où l'on définit le contenu de la liste déroulante associée au champ gct_tpscra lors de la saisie de temps passé
 	def gct_tpscra_collection_for_select_options()
 		collection = []
 		collection << [ "--- #{l(:actionview_instancetag_blank_option)} ---", '' ]
@@ -35,7 +37,7 @@ module GCT_TPS_CRA_patch_helper_timelog
                  l(:field_issue),
                  l(:field_tracker),
                  l(:field_subject),
-				 l(:field_gct_tpscra),
+				 l(:field_gct_tpscra), # Ligne spécifique GFI (ajout du champ gct_tpscra)
                  l(:field_hours),
                  l(:field_comments)
                  ]
@@ -52,7 +54,7 @@ module GCT_TPS_CRA_patch_helper_timelog
                   (entry.issue ? entry.issue.id : nil),
                   (entry.issue ? entry.issue.tracker : nil),
                   (entry.issue ? entry.issue.subject : nil),
-				  entry.gct_tpscra,
+				  entry.gct_tpscra, # Ligne spécifique GFI (ajout du champ gct_tpscra)
                   entry.hours.to_s.gsub('.', decimal_separator),
                   entry.comments
                   ]

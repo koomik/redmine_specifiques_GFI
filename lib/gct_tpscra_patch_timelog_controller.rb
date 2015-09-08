@@ -5,10 +5,11 @@ module GCT_TPS_CRA_patch_timelog
     base.send(:include, InstanceMethods)
 
     base.class_eval do
-      alias_method_chain :new, :patch
-	  alias_method_chain :create, :patch
-	  alias_method_chain :index, :patch
-	  alias_method_chain :report, :patch
+		# Redéfinition des méthodes new, create, index et report
+		alias_method_chain :new, :patch
+		alias_method_chain :create, :patch
+		alias_method_chain :index, :patch
+		alias_method_chain :report, :patch
     end
   end
   
@@ -21,7 +22,7 @@ module GCT_TPS_CRA_patch_timelog
 	def create_with_patch
     @time_entry ||= TimeEntry.new(:project => @project, :issue => @issue, :spent_on => User.current.today)
     @time_entry.safe_attributes = params[:time_entry]
-	@time_entry.user = User.find_by_id(params[:time_entry][:user_id])
+	@time_entry.user = User.find_by_id(params[:time_entry][:user_id]) # Ligne spécifique GFI (possibilité d'assigner du temps passé à un membre du projet)
     if @time_entry.project && !User.current.allowed_to?(:log_time, @time_entry.project)
       render_403
       return
@@ -92,7 +93,7 @@ module GCT_TPS_CRA_patch_timelog
 		format.csv {
 			@entries = scope.to_a
 		
-			#Ligne modifiée (spécifique GFI)
+			#Ligne modifiée (spécifique GFI) : Modification du nom du fichier à générer et de la méthode à appeler (query_to_csv_timelog au lieu de query_to_csv)
 			send_data(query_to_csv_timelog(@entries, @query, params), :type => 'text/csv; header=present', :filename => 'timelog_details.csv')
 		}
 		end
@@ -107,7 +108,7 @@ module GCT_TPS_CRA_patch_timelog
 		respond_to do |format|
 			format.html { render :layout => !request.xhr? }
       
-			#Ligne modifiée (spécifique GFI)
+			#Ligne modifiée (spécifique GFI) : Modification du nom du fichier à générer
 			format.csv  { send_data(report_to_csv(@criterias, @periods, @hours), :type => 'text/csv; header=present', :filename => 'timelog_report.csv') }
 		end
 	end
