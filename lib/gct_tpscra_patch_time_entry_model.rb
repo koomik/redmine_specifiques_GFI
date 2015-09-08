@@ -7,7 +7,7 @@ module GCT_TPS_CRA_patch_time_entry_model
 	base.class_eval do
 		unloadable
 		alias_method_chain :validate_time_entry, :patch # Redéfinition de la méthode validate_time_entry
-
+		
 		attr_protected :project_id, :tyear, :tmonth, :tweek
 		clear_validators! # On supprime toutes les contraintes de validation
 		

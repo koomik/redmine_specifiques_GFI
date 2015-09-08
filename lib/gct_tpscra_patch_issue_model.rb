@@ -16,9 +16,16 @@ module GCT_TPS_CRA_patch_issue_model
 	# Ajout de la méthode gct_tpscra_hours
 	# Returns the total number of hours 'temps CRA' for this issue and its descendants
 	def gct_tpscra_hours
-		demis = time_entries.where("gct_tpscra='M' or gct_tpscra='S'").count
-		jours = time_entries.where("gct_tpscra='J'").count
-		total = 4*demis + 8*jours
+	
+		# Ces 3 lignes permettent de retourner le nombre d'heures passées (Temps CRA renseigné) en considérant qu'un matin=4h, qu'un soir=4h et qu'un jour=8h
+		# Peu importe la valeur saisie dans le champ Heures
+		
+		#demis = time_entries.where("gct_tpscra='M' or gct_tpscra='S'").count
+		#jours = time_entries.where("gct_tpscra='J'").count
+		#total = 4*demis + 8*jours
+		
+		# Cette ligne renvoie le nombre d'heures passées (Temps CRA renseigné) en sommant toutes les heures des temps CRA
+		total = time_entries.where("gct_tpscra='M' or gct_tpscra='S' or gct_tpscra='J'").sum(:hours)
 	end
 	
 	# Redéfinition de la méthode done_ratio_derivated?
