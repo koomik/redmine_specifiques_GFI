@@ -27,4 +27,4 @@ Aucun contrôle de saisie n’est effectué sur le champ Heures.
 `ALTER TABLE 'bitnami_redmine'.'time_entries' ADD COLUMN 'gct_tpscra' VARCHAR(1) NOT NULL  AFTER 'updated_on';`
 - Copier le dossier redmine_specifiques_GFI dans le répertoire {REDMINE_ROOT}/apps/redmine/htdocs/plugins
 - `bundle exec rake redmine:plugins:migrate RAILS_ENV=production`
-- Relancer le serveur HTTP
+- Relancer les serveurs
