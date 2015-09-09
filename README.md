@@ -1,6 +1,7 @@
 # Redmine Spécifiques GFI
 
-Réintégration des spécifiques GFI sous la forme d'un plugin
+Réintégration des spécifiques GFI sous la forme d'un plugin.
+
 Ce plugin permet :
 
 ### Pour les temps passés
