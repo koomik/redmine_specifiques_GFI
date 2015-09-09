@@ -3,8 +3,6 @@
 Réintégration des spécifiques GFI sous la forme d'un plugin
 Ce plugin permet :
 
-Ce spécifique permet :
-
 ### Pour les temps passés
 
 - D’ajouter un champ « Temps CRA » lors de la saisie de temps passé, limité à matin=soir=4h, jour=8h ou aucun et qui servira pour le rapprochement avec Resplan.
