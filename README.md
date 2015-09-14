@@ -6,7 +6,8 @@ Ce plugin permet :
 
 ### Pour les temps passés
 
-- D’ajouter un champ « Temps CRA » lors de la saisie de temps passé, limité à matin=soir=4h, jour=8h ou aucun et qui servira pour le rapprochement avec Resplan.
+- D’ajouter un champ « Temps CRA » lors de la saisie de temps passé, limité à matin=soir=4h, jour=8h ou aucun et qui servira pour le rapprochement avec Resplan
+(à condition que le temps estimé de la demande courante soit rensigné).
 - D’effectuer un contrôle de saisie sur  le champ « Commentaire » lors de la saisie d’un temps passé
 (Les caractères &*%?'#\" sont désormais filtrés, leur saisie entraine un message d’avertissement).
 - D'assigner du temps passé à un autre utilisateur du projet
