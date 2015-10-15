@@ -11,6 +11,7 @@ Ce plugin permet :
 (Les caractères &*%?'#\" sont désormais filtrés, leur saisie entraine un message d’avertissement).
 - D'assigner du temps passé à un autre utilisateur du projet.
 - D'ajouter le champ gct_tpscra lors de l'import de temps passés dans un fichier csv (le nom des fichiers csv est aussi plus explicite).
+- De définir le filtre par défaut à "cette semaine" dans les écrans récapitulatifs des temps passés par projet ou global.
 
 Aucun contrôle de saisie n’est effectué sur le champ Heures.
 
