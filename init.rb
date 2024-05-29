@@ -16,7 +16,9 @@ Redmine::Plugin.register :redmine_specifiques_GFI do
   author 'GCT Orthez'
   description 'Réintégration des spécifiques GFI sous la forme d\'un plugin'
   version '1.1.1'
-  url 'https://github.com/GFI-Orthez/redmine_specifiques_GFI'
+  # déplacement du repo sur une nouvelle URL suite perte d'accès liée au départ de Dany
+  # url 'https://github.com/GFI-Orthez/redmine_specifiques_GFI'
+  url 'https://github.com/koomik/redmine_specifiques_GFI'
   
   requires_redmine :version_or_higher => '3.0.0'
   
