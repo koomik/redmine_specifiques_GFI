@@ -41,7 +41,7 @@ module GCT_TPS_CRA_patch_time_entry_model
 		errors.add :activity_id, :inclusion if activity_id_changed? && project && !project.activities.include?(activity)
 
 		# Controle sur la saisie dans le champ commentaire
-		@@invalid_chars = "&*%?'#\""
+		@@invalid_chars = "&*%?'#;\""
 		errors.add(:comments, :invalid_char, :value =>@@invalid_chars) if (comments =~ /[#{@@invalid_chars}]/)
 		
 		# Tests sur gct_tpscra:
