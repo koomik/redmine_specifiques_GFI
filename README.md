@@ -1,6 +1,6 @@
 # Redmine Spécifiques GFI
 
-Suite au départ de Dany, déplacement du repository sur compte Arnaud Grignan
+Suite au départ de Dany, fork du repository sur compte Arnaud Grignan (le master d'origine est toujours disponible)
 
 Réintégration des spécifiques GFI sous la forme d'un plugin.
 
