@@ -1,5 +1,7 @@
 # Redmine Spécifiques GFI
 
+Suite au départ de Dany, déplacement du repository sur compte Arnaud Grignan
+
 Réintégration des spécifiques GFI sous la forme d'un plugin.
 
 Ce plugin permet :
